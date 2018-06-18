@@ -23,7 +23,7 @@ import settings
 
 def handle_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-t", "--target", help="specify the target",
+    parser.add_argument("-t", "--host", help="specify the host",
                         type=str, required=True)
     parser.add_argument("-i", "--interval", help="specify the tip interval",
                         type=int, required=True)
@@ -41,6 +41,9 @@ def handle_args():
                         type=str, required=True)
     parser.add_argument("-l", "--token_limit", help="the max number of tokens to tip before exiting",
                         type=int, required=False, default=60)
+    parser.add_argument("--selenium_host", help="the selenium grid host", type=str, required=True)
+    parser.add_argument("--selenium_port", help="the selenium grid port", type=int, default=4444)
+    parser.add_argument("--browser", help="the browser to use", default="chrome")
     args = parser.parse_args()
     return args
 
