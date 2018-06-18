@@ -13,6 +13,8 @@ import logging
 import time
 import uuid
 from logging import handlers
+import selenium
+from selenium import webdriver
 
 import pygogo as gogo
 
@@ -42,9 +44,26 @@ def handle_args():
     args = parser.parse_args()
     return args
 
-
 def int_time():
     return int(time.time())
+
+
+def get_elem(driver: webdriver.Remote, by, locator, timeout):
+    found = 0
+    start_time = int_time()
+    while found == 0:
+        if (int_time() - start_time) > timeout:
+            raise TimeoutError("couldn't find element {}:{} in {}s".format(by, locator, timeout))
+        if by == "id":
+            elements = driver.find_elements_by_id(locator)
+        if by == "css":
+            elements = driver.find_element_by_css_selector(locator)
+        if by == "class":
+            elements = driver.find_element_by_class_name(locator)
+        if by == "xpath":
+            elements = driver.find_elements_by_xpath("/html/body/div[2]/div[2]/div/form/input[5]")
+        found = elements.count()
+    return elements[0]
 
 if __name__ == "main":
     total_tokens = 0
