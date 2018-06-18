@@ -13,10 +13,9 @@ import logging
 import time
 import uuid
 from logging import handlers
-import selenium
-from selenium import webdriver
 
 import pygogo as gogo
+from selenium import webdriver
 
 import settings
 
@@ -48,6 +47,7 @@ def handle_args():
     parser.add_argument("--browser", help="the browser to use", default="chrome")
     args = parser.parse_args()
     return args
+
 
 def int_time():
     return int(time.time())
@@ -119,7 +119,7 @@ if __name__ == "main":
         driver.get("https://chaturbate.com/{}/".format(args.host))
 
         elem = get_elem(driver, "xpath", "/html/body/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[last()]", 30)
-        while ("chat disconnected" in elem.text) or ("trying to reconnect" in elem.text): #not sure this'll work...
+        while ("chat disconnected" in elem.text) or ("trying to reconnect" in elem.text):  # not sure this'll work...
             logger.debug("chat disconnected, sleeping for 1")
             time.sleep(1)
             elem = get_elem(driver, "xpath", "/html/body/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[last()]",
