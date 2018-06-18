@@ -62,9 +62,9 @@ def get_elem(driver: webdriver.Remote, by, locator, timeout):
         if by == "id":
             elements = driver.find_elements_by_id(locator)
         if by == "css":
-            elements = driver.find_element_by_css_selector(locator)
+            elements = driver.find_elements_by_css_selector(locator)
         if by == "class":
-            elements = driver.find_element_by_class_name(locator)
+            elements = driver.find_elements_by_class_name(locator)
         if by == "xpath":
             elements = driver.find_elements_by_xpath("/html/body/div[2]/div[2]/div/form/input[5]")
         found = elements.count()
