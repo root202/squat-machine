@@ -54,4 +54,5 @@ A little selenium script (python3) for automated kniebeugen folter (google trans
     - A useful part for the uuid_str to play, just have a nudging feeling that NOT having a uuid for each run is a bad 
     idea...
     - What to do when you pass stupid values for the cli options, i.e. bad browser, unreachable selenium grid hub, etc
+    - What to do if the host is offline. See the note about the Hammer of Ban
     - Lot's of others I haven't thought of yet, and don't really want to 
