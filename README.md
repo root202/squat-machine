@@ -42,6 +42,9 @@ A little selenium script (python3) for automated kniebeugen folter (google trans
 
     Run `docker-compose run --service-ports kniebeugen_folter:latest <args here>` instead of good-ole `docker-compose up
     `
+- Q: What is this for?
+
+    Figure it out, it's right there IN THE SOURCE. :)
 
 # Notes
 - There are a bunch of edge cases I don't feel like testing (and general things), like:
