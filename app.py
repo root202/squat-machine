@@ -32,7 +32,9 @@ def handle_args():
                              ", etc... You know why this is useful.",
                         type=str, required=False, default=0)
     parser.add_argument("-tm", "--tip_message", help="specify the tip message",
-                        type=str, required=False, default="")
+                        type=str, required=False,
+                        default="brought to you via {}, a project by {}".format(settings.APP_SETTINGS["APP_NAME"],
+                                                                                "root202"))
     parser.add_argument("-a", "--amount", help="specify the tip amount, if jesse starts to change things up... -_-",
                         type=int, required=False, default=6)
     parser.add_argument("-u", "--username", help="the account username",
