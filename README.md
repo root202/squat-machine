@@ -43,4 +43,5 @@ A little selenium script (python3) for automated kniebeugen folter (google trans
     - If there should be cli options for various timeouts, i.e. when the chat/tip/etc won't connect
     - A useful part for the uuid_str to play, just have a nudging feeling that NOT having a uuid for each run is a bad 
     idea...
+    - What to do when you pass stupid values for the cli options, i.e. bad browser, unreachable selenium grid hub, etc
     - Lot's of others I haven't thought of yet, and don't really want to 
