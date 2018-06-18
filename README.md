@@ -4,6 +4,10 @@ _mehr kniebeugen folter!_
 # WtF?
 A little selenium script (python3) for automated kniebeugen folter (google translate ftw...).
 
+# Build the docker image
+- `chmod +x ./build.sh`
+- `./build.sh`
+
 # Setup
 - `python 3 -m venv venv`
 - `source ./venv/bin/activate`
@@ -22,6 +26,15 @@ A little selenium script (python3) for automated kniebeugen folter (google trans
 - Q: What are the CLI options?
     
     `python3 app.py --help`
+
+- Q: Really? An entire ubuntu 16 image for the dockerfile?
+    
+    Yep, deal with it.
+    
+- Q: How do I pass the needed cli options to the app when using docker-compose?
+
+    Run `docker-compose run --service-ports kniebeugen_folter:latest <args here>` instead of good-ole `docker-compose up
+    `
 
 # Notes
 - There are a bunch of edge cases I don't feel like testing (and general things), like:
