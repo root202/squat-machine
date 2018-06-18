@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 __author__ = "root202"
 __copyright__ = "Copyright 2018, root202"
 __credits__ = ["root202"]
@@ -8,12 +9,12 @@ __maintainer__ = "root202"
 __email__ = "root202@email.tg"
 __status__ = "Development"
 
-import argparse
 import logging
 import time
 import uuid
 from logging import handlers
 
+import configargparse
 import pygogo as gogo
 from selenium import webdriver
 
@@ -21,30 +22,32 @@ import settings
 
 
 def handle_args():
-    parser = argparse.ArgumentParser()
+    parser = configargparse.ArgParser()
     parser.add_argument("-t", "--host", help="specify the host",
-                        type=str, required=True)
+                        type=str, required=True, env_var="HOST_USER")
     parser.add_argument("-i", "--interval", help="specify the tip interval",
-                        type=int, required=True)
+                        type=int, required=True, env_var="TIP_INERVAL")
     parser.add_argument("-m", "--interval_modulo",
                         help="specify second modulo to start the loop, i.e. at the 5th second"
                              ", etc... You know why this is useful.",
-                        type=str, required=False, default=0)
+                        type=str, required=False, default=0, env_var="INTERVAL_MODULO")
     parser.add_argument("-tm", "--tip_message", help="specify the tip message",
                         type=str, required=False,
                         default="brought to you via {}, a project by {}".format(settings.APP_SETTINGS["APP_NAME"],
-                                                                                "root202"))
+                                                                                "root202"), env_var="")
     parser.add_argument("-a", "--amount", help="specify the tip amount, if jesse starts to change things up... -_-",
-                        type=int, required=False, default=6)
+                        type=int, required=False, default=6, env_var="TIP_AMOUNT")
     parser.add_argument("-u", "--username", help="the account username",
-                        type=str, required=True)
+                        type=str, required=True, env_var="CB_USERNAME")
     parser.add_argument("-p", "--password", help="the account password",
-                        type=str, required=True)
+                        type=str, required=True, env_var="CB_PASSWORD")
     parser.add_argument("-l", "--token_limit", help="the max number of tokens to tip before exiting",
-                        type=int, required=False, default=60)
-    parser.add_argument("--selenium_host", help="the selenium grid host", type=str, required=True)
-    parser.add_argument("--selenium_port", help="the selenium grid port", type=int, default=4444)
-    parser.add_argument("--browser", help="the browser to use", default="chrome")
+                        type=int, required=False, default=60, env_var="TOKEN_LIMIT")
+    parser.add_argument("--selenium_host", help="the selenium grid host", type=str, required=True,
+                        env_var="SEL_GRID_HOST")
+    parser.add_argument("--selenium_port", help="the selenium grid port", type=int, default=4444,
+                        env_var="SEL_GRID_PORT")
+    parser.add_argument("--browser", help="the browser to use", default="chrome", env_var="SEL_GRIB_BROWSER")
     args = parser.parse_args()
     return args
 

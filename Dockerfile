@@ -13,4 +13,4 @@ RUN mkdir -p /opt/app/logs
 RUN python3 -m venv venv
 RUN bash /opt/app/install.sh
 
-ENTRYPOINT ["bash", "/opt/app/exec.sh"]
+CMD ["bash", "/opt/app/exec.sh"]

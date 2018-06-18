@@ -5,8 +5,6 @@ squat-machine
 - This has not been tested
 - This was written between 0000 and 0200 on a sunday night, after about 4 hours of sleep
 - The docker stuff is REALLY untested, like, wouldn't bet your beer it works
-- I'm not settled on using cli options, i.e those might all switch to env vars. Would make my life WAY easier
-
 # WtF?
 A little selenium script (python3) for automated tipping on an interval.
 
@@ -39,8 +37,8 @@ A little selenium script (python3) for automated tipping on an interval.
     
 - Q: How do I pass the needed cli options to the app when using docker-compose?
 
-    Run `docker-compose run --service-ports squat_machine:latest <args here>` instead of good-ole `docker-compose up
-    `
+    Use the env var overrides
+    
 - Q: What is this for?
 
     Figure it out, it's right there IN THE SOURCE. :)
