@@ -22,3 +22,12 @@ A little selenium script (python3) for automated kniebeugen folter (google trans
 - Q: What are the CLI options?
     
     `python3 app.py --help`
+
+# Notes
+- There are a bunch of edge cases I don't feel like testing (and general things), like:
+    - What happens when you fuck up the `--token-limit` and go broke
+    - What happens when you're banned by a mod because you're being a dick with this script, or just a dick in general
+    - If there should be cli options for various timeouts, i.e. when the chat/tip/etc won't connect
+    - A useful part for the uuid_str to play, just have a nudging feeling that NOT having a uuid for each run is a bad 
+    idea...
+    - Lot's of others I haven't thought of yet, and don't really want to 
