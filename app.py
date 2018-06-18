@@ -125,7 +125,6 @@ if __name__ == "main":
 
         logger.info("ready to work...")
 
-        #login, wait for chat to init, etc
         while int_time() % args.interval_modulo != 0:
             time.sleep(1)
 
@@ -133,7 +132,25 @@ if __name__ == "main":
             if int_time() % args.interval != 0:
                 time.sleep(1)
                 continue
-            # do some magic, e.g. tip
+
+            logger.info("executing folter (tip)")
+
+            elem = get_elem(driver, "class", "tip_button", 30)
+            elem.click()
+
+            elem = get_elem(driver, "id", "id_tip_amount", 30)
+            elem.clear()
+            elem.send_keys(args.amount)
+
+            elem = get_elem(driver, "id", "id_tip_msg_input", 30)
+            elem.clear()
+            elem.send_keys(args.tip_message)
+
+            elem = get_elem(driver, "id", "id_tip_message", 30)
+            elem.click()
+
     except KeyboardInterrupt:
         logger.info("shutting down at {}".format(int_time()))
         pass
+    except BaseException as ex:
+        logger.error("something bad happened: {}".format(ex))
