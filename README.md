@@ -2,6 +2,12 @@ kniebeugen-folter
 -----------------
 _mehr kniebeugen folter!_
 
+# Disclaimer
+- This has not been tested
+- This was written between 0000 and 0200 on a sunday night, after about 4 hours of sleep
+- The docker stuff is REALLY untested, like, wouldn't bet your beer it works
+- I'm not settled on using cli options, i.e those might all switch to env vars. Would make my life WAY easier
+
 # WtF?
 A little selenium script (python3) for automated kniebeugen folter (google translate ftw...).
 
