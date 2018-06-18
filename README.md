@@ -1,6 +1,5 @@
-kniebeugen-folter
+squat-machine
 -----------------
-_mehr kniebeugen folter!_
 
 # Disclaimer
 - This has not been tested
@@ -9,7 +8,7 @@ _mehr kniebeugen folter!_
 - I'm not settled on using cli options, i.e those might all switch to env vars. Would make my life WAY easier
 
 # WtF?
-A little selenium script (python3) for automated kniebeugen folter (google translate ftw...).
+A little selenium script (python3) for automated tipping on an interval.
 
 # Build the docker image
 - `chmod +x ./build.sh`
@@ -40,7 +39,7 @@ A little selenium script (python3) for automated kniebeugen folter (google trans
     
 - Q: How do I pass the needed cli options to the app when using docker-compose?
 
-    Run `docker-compose run --service-ports kniebeugen_folter:latest <args here>` instead of good-ole `docker-compose up
+    Run `docker-compose run --service-ports squat_machine:latest <args here>` instead of good-ole `docker-compose up
     `
 - Q: What is this for?
 

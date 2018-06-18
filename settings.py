@@ -10,8 +10,8 @@ if env_path.exists():
     load_dotenv(dotenv_path="./")
 
 APP_SETTINGS = {
-    "APP_NAME": "kniebeugen-folter",
-    "LOG_FILE": "logs/kniebeugen-folter.json.log",
+    "APP_NAME": "squat_machine",
+    "LOG_FILE": "logs/squat_machine.json.log",
     "LOG_LEVEL": logging.getLevelName(logging.DEBUG),
 }
 

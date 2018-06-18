@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build . -t kniebeugen_folter:latest
+docker build . -t squat_machine:latest
