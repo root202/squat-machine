@@ -70,7 +70,8 @@ def get_elem(driver: webdriver.Remote, by, locator, timeout):
         found = elements.count()
     return elements[0]
 
-if __name__ == "main":
+
+if __name__ == "__main__":
     total_tokens = 0
     args = handle_args()
     low_fmt = gogo.formatters.json_formatter
