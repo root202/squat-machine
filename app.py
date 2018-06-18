@@ -83,6 +83,48 @@ if __name__ == "main":
     logger.info("starting at {} with uuid {}".format(int_time(), uuid_str))
 
     try:
+        logger.debug("setting up selenium...")
+        driver = webdriver.Remote(
+            command_executor="http://{}:{}/wd/hub".format(args.selenium_host, args.selenium_port),
+            desired_capabilities={
+                "browserName": args.browser,
+                "version": "latest"
+            })
+
+        logger.debug("logging in...")
+
+        driver.get("https://chaturbate.com/")
+
+        elem = get_elem(driver, "id", "close_entrance_terms", 30)
+        elem.click()
+
+        elem = get_elem(driver, "class", "login-link", 30)
+        elem.click()
+
+        elem = get_elem(driver, "id", "id_username", 30)
+        elem.send_keys(args.usernmae)
+
+        elem = get_elem(driver, "id", "id_password", 30)
+        elem.send_keys(args.password)
+
+        elem = get_elem(driver, "xpath", "/html/body/div[2]/div[2]/div/form/input[5]", 30)
+        elem.click()
+
+        logger.info("logged in...")
+
+        logger.debug("opening {}'s page...".format(args.host))
+
+        driver.get("https://chaturbate.com/{}/".format(args.host))
+
+        elem = get_elem(driver, "xpath", "/html/body/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[last()]", 30)
+        while ("chat disconnected" in elem.text) or ("trying to reconnect" in elem.text): #not sure this'll work...
+            logger.debug("chat disconnected, sleeping for 1")
+            time.sleep(1)
+            elem = get_elem(driver, "xpath", "/html/body/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[last()]",
+                            30)
+
+        logger.info("ready to work...")
+
         #login, wait for chat to init, etc
         while int_time() % args.interval_modulo != 0:
             time.sleep(1)
