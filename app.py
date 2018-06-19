@@ -158,8 +158,9 @@ if __name__ == "__main__":
 
         logger.info("ready to work...")
 
-        while int_time() % args.interval_modulo != 0:
-            time.sleep(1)
+        if args.interval_modulo != 0:
+            while int_time() % args.interval_modulo != 0:
+                time.sleep(1)
 
         while total_tokens < args.token_limit:
             if int_time() % args.interval != 0:
