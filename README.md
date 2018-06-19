@@ -5,8 +5,15 @@ squat-machine
 - This has not been tested
 - This was written between 0000 and 0200 on a sunday night, after about 4 hours of sleep
 - The docker stuff is REALLY untested, like, wouldn't bet your beer it works
+
 # WtF?
 A little selenium script (python3) for automated tipping on an interval.
+
+# Requirements:
+- Python3
+- Selenium Server: [project page](https://docs.seleniumhq.org/download/)
+- ChromeDriver: [project page](https://sites.google.com/a/chromium.org/chromedriver/getting-started)
+- (Optionally) Docker and DockerCompose
 
 # Build the docker image
 - `chmod +x ./build.sh`
