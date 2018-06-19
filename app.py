@@ -84,6 +84,14 @@ def get_elem(driver: webdriver.Remote, by, locator, timeout):
     return elements[0]
 
 
+def try_to_close_the_browser(driver = None):
+    if driver == None:
+        pass
+    try:
+        driver.close()
+    except:
+        pass
+
 if __name__ == "__main__":
     total_tokens = 0
     args = handle_args()
@@ -191,8 +199,12 @@ if __name__ == "__main__":
             elem = get_elem(driver, "id", "id_tip_message", 30)
             elem.click()
 
+        logger.info("hit the tip limit, exiting")
+        try_to_close_the_browser(driver)
     except KeyboardInterrupt:
         logger.info("shutting down at {}".format(int_time()))
+        try_to_close_the_browser(driver)
         pass
     except BaseException as ex:
         logger.error("something bad happened: {}".format(ex))
+        try_to_close_the_browser(driver)
