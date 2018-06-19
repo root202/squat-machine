@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 env_path = Path('.') / '.env'
 if env_path.exists():
-    load_dotenv(dotenv_path="./")
+    load_dotenv(dotenv_path="./.env")
 
 APP_SETTINGS = {
     "APP_NAME": "squat_machine",
