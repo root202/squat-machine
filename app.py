@@ -50,6 +50,8 @@ def handle_args():
     parser.add_argument("--browser", help="the browser to use", default="chrome", env_var="SEL_GRIB_BROWSER")
     parser.add_argument("--defang", help="run without tipping", default=False, action="store_true",
                         env_var="TIP_DEFANG")
+    parser.add_argument("--keep_browser_open", help="keep the browser open after hitting the token limit",
+                        action="store_true", default=False)
     args = parser.parse_args()
     return args
 
@@ -84,8 +86,11 @@ def get_elem(driver: webdriver.Remote, by, locator, timeout):
     return elements[0]
 
 
-def try_to_close_the_browser(driver = None):
+def try_to_close_the_browser(args, logger, driver = None):
     if driver == None:
+        pass
+    if args.keep_browser_open == True:
+        logger.info("keeping the browser open...")
         pass
     try:
         driver.close()
@@ -200,11 +205,11 @@ if __name__ == "__main__":
             elem.click()
 
         logger.info("hit the tip limit, exiting")
-        try_to_close_the_browser(driver)
+        try_to_close_the_browser(args, logger, driver)
     except KeyboardInterrupt:
         logger.info("shutting down at {}".format(int_time()))
-        try_to_close_the_browser(driver)
+        try_to_close_the_browser(args, logger, driver)
         pass
     except BaseException as ex:
         logger.error("something bad happened: {}".format(ex))
-        try_to_close_the_browser(driver)
+        try_to_close_the_browser(args, logger, driver)
