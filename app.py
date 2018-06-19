@@ -99,7 +99,7 @@ if __name__ == "__main__":
     logger.info("starting at {} with uuid {}".format(int_time(), uuid_str))
 
     try:
-        logger.debug("setting up selenium...")
+        logger.info("setting up selenium...")
         driver = webdriver.Remote(
             command_executor="http://{}:{}/wd/hub".format(args.selenium_host, args.selenium_port),
             desired_capabilities={
@@ -107,28 +107,40 @@ if __name__ == "__main__":
                 "version": "latest"
             })
 
-        logger.debug("logging in...")
+        logger.info("logging in...")
 
         driver.get("https://chaturbate.com/")
 
+        logger.debug("clicking the entrance_terms div")
+        elem = get_elem(driver, "id", "entrance_terms", 30)
+        elem.click()
+
+        logger.debug("clicking the close_entrance_terms button")
         elem = get_elem(driver, "id", "close_entrance_terms", 30)
         elem.click()
 
+        logger.info("sleeping for 5...")
+        time.sleep(5)
+
+        logger.debug("clicking the login link")
         elem = get_elem(driver, "class", "login-link", 30)
         elem.click()
 
+        logger.debug("filling out the username")
         elem = get_elem(driver, "id", "id_username", 30)
-        elem.send_keys(args.usernmae)
+        elem.send_keys(args.username)
 
+        logger.debug("filling out the password")
         elem = get_elem(driver, "id", "id_password", 30)
         elem.send_keys(args.password)
 
+        logger.debug("clicking the login button")
         elem = get_elem(driver, "xpath", "/html/body/div[2]/div[2]/div/form/input[5]", 30)
         elem.click()
 
         logger.info("logged in...")
 
-        logger.debug("opening {}'s page...".format(args.host))
+        logger.info("opening {}'s page...".format(args.host))
 
         driver.get("https://chaturbate.com/{}/".format(args.host))
 
@@ -149,15 +161,18 @@ if __name__ == "__main__":
                 time.sleep(1)
                 continue
 
-            logger.info("executing folter (tip)")
+            logger.info("executing tip")
 
+            logger.debug("clicking the tip_button")
             elem = get_elem(driver, "class", "tip_button", 30)
             elem.click()
 
+            logger.debug("filling the tip amount")
             elem = get_elem(driver, "id", "id_tip_amount", 30)
             elem.clear()
             elem.send_keys(args.amount)
 
+            logger.debug("entering the tip message")
             elem = get_elem(driver, "id", "id_tip_msg_input", 30)
             elem.clear()
             elem.send_keys(args.tip_message)
