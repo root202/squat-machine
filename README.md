@@ -2,7 +2,7 @@ squat-machine
 -----------------
 
 # Disclaimer
-- This has not been marginally tested
+- This has only been marginally tested
 - This was initially put together between 0000 and 0200 on a sunday night, after about 4 hours of sleep
 - The docker stuff is untested, but using the env vars via ConfigArgsParse should make it function a bit easier. You'll 
 probably need to update [docker-compose.yaml](./docker-compose.yaml)
