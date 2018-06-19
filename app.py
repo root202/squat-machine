@@ -60,8 +60,11 @@ def int_time():
 
 def get_elem(driver: webdriver.Remote, by, locator, timeout):
     found = 0
+    if by not in ["id", "css", "class", "xpath"]:
+        raise Exception("invalid by locator type passed to {}".format("get_elem"))
     start_time = int_time()
     while found == 0:
+        time.sleep(1)
         if (int_time() - start_time) > timeout:
             raise TimeoutError("couldn't find element {}:{} in {}s".format(by, locator, timeout))
         if by == "id":
@@ -72,7 +75,12 @@ def get_elem(driver: webdriver.Remote, by, locator, timeout):
             elements = driver.find_elements_by_class_name(locator)
         if by == "xpath":
             elements = driver.find_elements_by_xpath("/html/body/div[2]/div[2]/div/form/input[5]")
-        found = elements.count()
+        if elements == None:
+            logger.debug("no elements found, trying again...")
+            continue
+        found = len(elements)
+        if found == 0:
+            logger.debug("no elements found, trying again...")
     return elements[0]
 
 
