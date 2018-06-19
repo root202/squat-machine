@@ -144,12 +144,17 @@ if __name__ == "__main__":
 
         driver.get("https://chaturbate.com/{}/".format(args.host))
 
+        '''
         elem = get_elem(driver, "xpath", "/html/body/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[last()]", 30)
         while ("chat disconnected" in elem.text) or ("trying to reconnect" in elem.text):  # not sure this'll work...
             logger.debug("chat disconnected, sleeping for 1")
             time.sleep(1)
             elem = get_elem(driver, "xpath", "/html/body/div[3]/div[2]/div[2]/div/div[1]/div[2]/div/div[2]/div[last()]",
                             30)
+        '''
+
+        logger.info("sleeping for 30 for the chat to init")
+        time.sleep(30)
 
         logger.info("ready to work...")
 
