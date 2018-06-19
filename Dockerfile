@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-RUN apt update
+RUN apt update && apt update
 RUN apt upgrade -y
 RUN apt install -y --fix-missing python3 python3-dev python3-venv build-essential
 RUN mkdir -p /opt/app
