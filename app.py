@@ -48,6 +48,8 @@ def handle_args():
     parser.add_argument("--selenium_port", help="the selenium grid port", type=int, default=4444,
                         env_var="SEL_GRID_PORT")
     parser.add_argument("--browser", help="the browser to use", default="chrome", env_var="SEL_GRIB_BROWSER")
+    parser.add_argument("--defang", help="run without tipping", default=False, action="store_true",
+                        env_var="TIP_DEFANG")
     args = parser.parse_args()
     return args
 
@@ -152,6 +154,11 @@ if __name__ == "__main__":
             elem.clear()
             elem.send_keys(args.tip_message)
 
+            if args.defang == True:
+                logger.info("running in defang mode, not actually tipping...")
+                continue
+
+            logger.debug("click the tip submit button")
             elem = get_elem(driver, "id", "id_tip_message", 30)
             elem.click()
 
